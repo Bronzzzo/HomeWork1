@@ -42,7 +42,6 @@ public class TestOpenDNS {
         driver.get("https://www.dns-shop.ru/");
 
 
-
         logger.info("Открыта страница DNS - " + "https://www.dns-shop.ru/");
         //ожидания
         WebElement element = driver.findElement(By.xpath("//a[@class='btn btn-additional']"));
@@ -55,25 +54,25 @@ public class TestOpenDNS {
         String currentUrl = driver.getCurrentUrl();
         logger.info("current URL - " + currentUrl.toString());
 
-
+        //выбор категории техника
         WebElement technique = driver.findElement(By.xpath("//a[@href='/catalog/17a8e9b716404e77/bytovaya-texnika/']"));
         technique.click();
 
         //список
         List<WebElement> value = driver.findElements(By.xpath("//span[@class='subcategory__title']"));
-        for (WebElement e: value) {
+        for (WebElement e : value) {
             logger.info("value ->" + e.getText());
         }
 
         // Создание Cookie
         logger.info("Куки, которое добавили мы");
         driver.manage().addCookie(new Cookie("Cookie 1", "This Is Cookie 1"));
-        Cookie cookie1  = driver.manage().getCookieNamed("Cookie 1");
+        Cookie cookie1 = driver.manage().getCookieNamed("Cookie 1");
         logger.info(String.format("Domain: %s", cookie1.getDomain()));
-        logger.info(String.format("Expiry: %s",cookie1.getExpiry()));
-        logger.info(String.format("Name: %s",cookie1.getName()));
-        logger.info(String.format("Path: %s",cookie1.getPath()));
-        logger.info(String.format("Value: %s",cookie1.getValue()));
+        logger.info(String.format("Expiry: %s", cookie1.getExpiry()));
+        logger.info(String.format("Name: %s", cookie1.getName()));
+        logger.info(String.format("Path: %s", cookie1.getPath()));
+        logger.info(String.format("Value: %s", cookie1.getValue()));
         logger.info("--------------------------------------");
 
 // Добавляем задержку sleep
@@ -82,6 +81,7 @@ public class TestOpenDNS {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 
     @AfterEach
