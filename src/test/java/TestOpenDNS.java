@@ -17,7 +17,7 @@ public class TestOpenDNS {
     // Читаем передаваемый параметр browser (-Dbrowser)
     String env = System.getProperty("browser", "chrome");
     // - Параметр -Doption=Имя_Опции для стратегии загрузки
-    String option = System.getProperty("strategy", "normal");
+    String str = System.getProperty("option", "normal");
 
     /*
     Варианты команд для запуска
@@ -25,13 +25,15 @@ public class TestOpenDNS {
     mvn clean test -Dbrowser=chrome
     mvn clean test -Doption='normal'
     mvn clean test -Doption=none
+    mvn clean test -Dbrowser=firefox -Doption=normal
+    mvn clean test -Dbrowser=chrome -Doption=none
 */
 
     @BeforeEach
     public void setUp() {
         logger.info("env -> " + env);
-        logger.info("strategy -> " + option);
-        driver = WebDriverFactory.getDriver(env.toLowerCase(), option.toLowerCase());
+        logger.info("strategy -> " + str);
+        driver = WebDriverFactory.getDriver(env.toLowerCase(), str.toLowerCase());
         logger.info("Start driver!");
 
     }

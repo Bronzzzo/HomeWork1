@@ -34,6 +34,7 @@ public class WebDriverFactory {
 
                         return new ChromeDriver(options);
                 }
+
                 logger.info("Драйвер для браузера Google Chrome");
                 return new ChromeDriver(options);
 
