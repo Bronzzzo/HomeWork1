@@ -32,8 +32,10 @@ public class WebDriverFactory {
                         break;
                     case "none":
                         options.setPageLoadStrategy(PageLoadStrategy.NONE);
+                        break;
+                    default:
+                        throw new RuntimeException("Incorrect option name");
 
-                        return new ChromeDriver(options);
                 }
 
                 logger.info("Драйвер для браузера Google Chrome");
@@ -46,6 +48,7 @@ public class WebDriverFactory {
                 firefoxOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.DISMISS);
                 firefoxOptions.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
                 firefoxOptions.addArguments("--private");
+                firefoxOptions.addArguments("--disable-notifications");
                 switch (strategyName) {
                     case "normal":
                         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
@@ -55,7 +58,10 @@ public class WebDriverFactory {
                         break;
                     case "none":
                         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
-                        return new FirefoxDriver(firefoxOptions);
+                        break;
+                    default:
+                        throw new RuntimeException("Incorrect option name");
+
                 }
                 logger.info("Драйвер для браузера Mozilla Firefox");
                 return new FirefoxDriver(firefoxOptions);
